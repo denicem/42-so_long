@@ -17,26 +17,38 @@ SRCS	:=	$(SRC_DIR)/main.c
 OBJS	:=	$(SRCS:.c=.o)
 
 MLX_LIB	:=	mlx/libmlx.a
+MLX_LIB_WIN	:=	mlx_linux/libmlx.a
 
 CC	:=	gcc
 CFLAGS :=	-Wall -Wextra -Werror
 MLX_FLAGS	:=	-Imlx
+MLX_FLAGS_WIN	:=	-I/usr/include -Imlx_linux -03
 
 LINK_MLX	:=	-Lmlx -lmlx -framework OpenGL -framework AppKit
+LINK_MLX_WIN	:=	-Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 all:	$(NAME) 
 
 $(NAME):	$(OBJS) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(LINK_MLX) $(OBJS) -o $(NAME)
 
+win:	$(win-obj) $(MLX_LIB_WIN)
+	$(CC) $(CFLAGS) $(LINK_MLX_WIN) $(OBJS) -o $(NAME)
+
 $(MLX_LIB):	
 	make -C mlx
+
+$(MLX_LIB_WIN):	
+	make -C mlx_linux
 
 MLX:
 	make -C mlx
 
 .c.o:
 	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $< -o $(<:.c=.o)
+
+win-obj:
+	$(CC) $(CFLAGS) $(MLX_FLAGS_WIN) -c $< -o $(<:.c=.o)
 
 clean:
 	rm -f $(OBJS)

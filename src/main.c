@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <mlx.h>
+// #include <mlx.h>
+#include "mlx_linux/mlx.h"
 
 typedef struct	s_vars
 {
