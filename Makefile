@@ -6,7 +6,7 @@
 #    By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 11:23:59 by dmontema          #+#    #+#              #
-#    Updated: 2021/12/15 14:18:43 by dmontema         ###   ########.fr        #
+#    Updated: 2021/12/17 02:56:04 by dmontema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,19 +24,23 @@ MLX_FLAGS	:=	-Imlx
 
 LINK_MLX	:=	-Lmlx -lmlx -framework OpenGL -framework AppKit
 
-all:	$(NAME) $(MLX_LIB)
+all:	$(NAME) 
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(MLX_LIB)
 	$(CC) $(CFLAGS) $(LINK_MLX) $(OBJS) -o $(NAME)
 
 $(MLX_LIB):	
-	make -C mlx/
+	make -C mlx
+
+MLX:
+	make -C mlx
 
 .c.o:
 	$(CC) $(CFLAGS) $(MLX_FLAGS) -c $< -o $(<:.c=.o)
 
 clean:
 	rm -f $(OBJS)
+	make -C mlx clean
 
 fclean:	clean
 	rm -f $(NAME)
