@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 20:05:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/19 01:02:11 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/19 01:24:50 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	main(int argc, char *argv[])
 		print_map(&data);
 		data.mlx = mlx_init();
 		data.mlx_win = mlx_new_window(data.mlx, data.width, data.height, "so_long");
+		set_textures(&data);
+		draw_floor(&data);
 		mlx_loop(data.mlx);
 	}
 	else

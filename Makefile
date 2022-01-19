@@ -6,14 +6,14 @@
 #    By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 11:23:59 by dmontema          #+#    #+#              #
-#    Updated: 2022/01/18 21:01:00 by dmontema         ###   ########.fr        #
+#    Updated: 2022/01/19 01:25:14 by dmontema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:=	so_long
 
 SRC_DIR	:=	./src
-SRCS	:=	$(SRC_DIR)/main.c $(SRC_DIR)/parse_map.c
+SRCS	:=	$(SRC_DIR)/main.c $(SRC_DIR)/parse_map.c $(SRC_DIR)/draw_map.c 
 OBJS	:=	$(SRCS:.c=.o)
 
 MLX_LIB	:=	mlx/libmlx.a

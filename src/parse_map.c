@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:56:13 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/19 01:04:00 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/19 01:26:42 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void	init_map(t_data *data, char *path_map)
 		data->map[i++] = get_next_line(fd);
 	data->map[i] = 0;
 	close(fd);
-	data->width = 64 * ft_strlen(data->map[0]);
-	data->height = 64 * lines;
+	data->width = TXT_PX * ft_strlen(data->map[0]);
+	data->height = TXT_PX * lines;
 }
