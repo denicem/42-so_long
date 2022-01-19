@@ -6,14 +6,14 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:23:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/19 01:24:28 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/19 18:59:44 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../Libft/inc/libft.h"
 
-# define NO_OF_TXT 5
 # define TXT_PX 64
+# define NO_OF_TXT 5
 
 enum e_textures {
 	floor = 0,
@@ -51,3 +51,5 @@ void	print_map(t_data *data);
 
 void	set_textures(t_data *data);
 void	draw_floor(t_data *data);
+void	draw_wall(t_data *data);
+void	draw_map(t_data *data);
