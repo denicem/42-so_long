@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:56:13 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/19 18:46:38 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/19 22:26:42 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ static int	count_lines(char *path_map)
 	return (lines);
 }
 
-void	init_map(t_data *data, char *path_map)
+void	init_map(t_data *data)
 {
 	int		lines;
 	int		i;
 	int		fd;
 
-	lines = count_lines(path_map);
+	lines = count_lines(data->path_map);
 	data->map = malloc(sizeof(char *) * (lines + 1));
 	if (data->map == NULL)
 		exit(1);
-	fd = open(path_map, O_RDONLY);
+	fd = open(data->path_map, O_RDONLY);
 	i = 0;
 	while (i < lines)
 		data->map[i++] = get_next_line(fd);

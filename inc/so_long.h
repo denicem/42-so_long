@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:23:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/19 18:59:44 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/19 23:03:40 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,12 @@ typedef struct	s_data
 	int		height;
 	char	*path_map;
 	char	**map;
+	int		moves;
+	t_vector	player_pos;
 	t_image	textures[NO_OF_TXT];
 }		t_data;
 
-void	init_map(t_data *data, char *path_map);
+void	init_map(t_data *data);
 void	print_map(t_data *data);
 
 void	set_textures(t_data *data);
