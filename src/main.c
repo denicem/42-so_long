@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 20:05:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/20 18:37:24 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/20 20:01:36 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,22 @@
 
 void	quit_game(t_data *data)
 {
+	int	i;
+
+	i = 0;
+	while (data->map[i])
+	{
+		free(data->map[i]);
+		data->map[i] = 0;
+		i++;
+	}
 	free(data->map);
 	data->map = 0;
 	mlx_destroy_window(data->mlx, data->mlx_win);
+	i = 0;
+	while (i < NO_OF_TXT)
+		mlx_destroy_image(data->mlx, data->textures[i++].img);
+	// system("leaks so_long");
 	exit(1);
 }
 
@@ -86,13 +99,16 @@ void	move_player(t_data *data, int keycode)
 	{
 		if (data->collect_count == 0)
 		{
+			data->moves++;
 			printf("GAME OVER!\n");
+			printf("MOVES: %d\n", data->moves);
 			quit_game(data);
 		}
 		else 
 		{
 			data->player_pos.x = old_pos.x;
 			data->player_pos.y = old_pos.y;
+			printf("CAN'T EXIT. COLLECTIBLES LEFT: %d\n", data->collect_count);
 		}
 	}
 	else
@@ -105,21 +121,19 @@ void	move_player(t_data *data, int keycode)
 			printf("COLLECTED! GJ!\n");
 			printf("COLLECTIBLES LEFT %d\n", data->collect_count);
 		}
+		data->moves++;
 		data->map[old_pos.y][old_pos.x] = '0';
 		data->map[data->player_pos.y][data->player_pos.x] = 'P';
 	}
-	// mlx_clear_window(data->mlx, data->mlx_win);
-	// draw_map(data);
-	// mlx_destroy_image(data->mlx, data->textures[player].img);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->textures[floor].img, old_pos.x * TXT_PX, old_pos.y * TXT_PX);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->textures[player].img, data->player_pos.x * TXT_PX, data->player_pos.y * TXT_PX);
-	print_map(data);
+	// print_map(data);
 }
 
 
 int key_hook(int keycode, t_data *data)
 {
-	printf("Key pressed: %d\n", keycode);
+	// printf("Key pressed: %d\n", keycode);
 	if (keycode == 53)
 		quit_game(data);
 	if (keycode == 0 || keycode == 1 || keycode == 2 || keycode == 13)
@@ -139,14 +153,11 @@ int	main(int argc, char *argv[])
 		data.mlx = mlx_init();
 		data.mlx_win = mlx_new_window(data.mlx, data.width * TXT_PX, data.height * TXT_PX, "so_long");
 		set_textures(&data);
-		printf("%d %d\n", data.textures[0].size.x, data.textures[0].size.y);
 		draw_map(&data);
 		data.moves = 0;
 		get_player_pos(&data);
 		get_collect_count(&data);
-		// printf("%d\n", data.moves);
-		printf("%d\n", data.collect_count);
-		// printf("PLAYER POS: x-%d y-%d\n", data.player_pos.x, data.player_pos.y);
+		// printf("%d\n", data.collect_count);
 		mlx_key_hook(data.mlx_win, key_hook, &data);
 		mlx_loop(data.mlx);
 	}
