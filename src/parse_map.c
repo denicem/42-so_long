@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:56:13 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/19 22:26:42 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/20 22:11:28 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,24 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-void	print_map(t_data *data)
+void	init_map(t_data *data)
 {
-	int i;
+	int		lines;
+	int		i;
+	int		fd;
 
+	lines = count_lines(data->path_map);
+	data->map = malloc(sizeof(char *) * (lines + 1));
+	if (data->map == NULL)
+		exit(1);
+	fd = open(data->path_map, O_RDONLY);
 	i = 0;
-	while (data->map[i])
-		ft_printf("%s", data->map[i++]);
-	ft_printf("\n");
+	while (i < lines)
+		data->map[i++] = get_next_line(fd);
+	data->map[i] = 0;
+	close(fd);
+	data->width = ft_strlen(data->map[0]) - 1; //minus newl
+	data->height = lines;
 }
 
 static int	count_lines(char *path_map)
@@ -45,22 +55,12 @@ static int	count_lines(char *path_map)
 	return (lines);
 }
 
-void	init_map(t_data *data)
+void	print_map(t_data *data)
 {
-	int		lines;
-	int		i;
-	int		fd;
+	int	i;
 
-	lines = count_lines(data->path_map);
-	data->map = malloc(sizeof(char *) * (lines + 1));
-	if (data->map == NULL)
-		exit(1);
-	fd = open(data->path_map, O_RDONLY);
 	i = 0;
-	while (i < lines)
-		data->map[i++] = get_next_line(fd);
-	data->map[i] = 0;
-	close(fd);
-	data->width = ft_strlen(data->map[0]) - 1; //minus newl
-	data->height = lines;
+	while (data->map[i])
+		ft_printf("%s", data->map[i++]);
+	ft_printf("\n");
 }

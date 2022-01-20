@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 20:05:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/20 22:01:05 by dmontema         ###   ########.fr       */
+/*   Created: 2022/01/20 22:00:00 by dmontema          #+#    #+#             */
+/*   Updated: 2022/01/20 22:13:29 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,43 @@
 #include <fcntl.h>
 #include "../inc/so_long.h"
 
-int	main(int argc, char *argv[])
+void	get_collect_count(t_data *data)
 {
-	t_data data;
+	int	x;
+	int	y;
 
-	if (argc == 2)
+	y = 0;
+	while (data->map[y])
 	{
-		data.path_map = argv[1];
-		init_map(&data);
-		data.mlx = mlx_init();
-		data.mlx_win = mlx_new_window(data.mlx, data.width * TXT_PX, data.height * TXT_PX, "so_long");
-		set_textures(&data);
-		draw_map(&data);
-		data.moves = 0;
-		get_player_pos(&data);
-		get_collect_count(&data);
-		mlx_key_hook(data.mlx_win, key_hook, &data);
-		mlx_loop(data.mlx);
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'C')
+				(data->collect_count)++;
+			x++;
+		}
+		y++;
 	}
-	else
-		printf("Wrong number of arguments.\n");
-	return (0);
+}
+
+void	get_player_pos(t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'P')
+			{
+				data->player_pos.x = x;
+				data->player_pos.y = y;
+			}
+			x++;
+		}
+		y++;
+	}
 }

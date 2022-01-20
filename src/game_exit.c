@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   game_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/14 20:05:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/20 22:01:05 by dmontema         ###   ########.fr       */
+/*   Created: 2022/01/20 22:00:50 by dmontema          #+#    #+#             */
+/*   Updated: 2022/01/20 22:01:17 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,22 @@
 #include <fcntl.h>
 #include "../inc/so_long.h"
 
-int	main(int argc, char *argv[])
+void	quit_game(t_data *data)
 {
-	t_data data;
+	int	i;
 
-	if (argc == 2)
+	i = 0;
+	while (data->map[i])
 	{
-		data.path_map = argv[1];
-		init_map(&data);
-		data.mlx = mlx_init();
-		data.mlx_win = mlx_new_window(data.mlx, data.width * TXT_PX, data.height * TXT_PX, "so_long");
-		set_textures(&data);
-		draw_map(&data);
-		data.moves = 0;
-		get_player_pos(&data);
-		get_collect_count(&data);
-		mlx_key_hook(data.mlx_win, key_hook, &data);
-		mlx_loop(data.mlx);
+		free(data->map[i]);
+		data->map[i] = 0;
+		i++;
 	}
-	else
-		printf("Wrong number of arguments.\n");
-	return (0);
+	free(data->map);
+	data->map = 0;
+	mlx_destroy_window(data->mlx, data->mlx_win);
+	i = 0;
+	while (i < NO_OF_TXT)
+		mlx_destroy_image(data->mlx, data->textures[i++].img);
+	exit(1);
 }
