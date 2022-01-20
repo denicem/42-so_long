@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:23:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/19 23:03:40 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:26:12 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_data
 	char	**map;
 	int		moves;
 	t_vector	player_pos;
+	int			collect_count;
 	t_image	textures[NO_OF_TXT];
 }		t_data;
 

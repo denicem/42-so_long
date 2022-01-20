@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 20:05:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/20 18:05:43 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:37:24 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,26 @@ void	quit_game(t_data *data)
 	exit(1);
 }
 
-void	find_player_pos(t_data *data)
+void	get_collect_count (t_data *data)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == 'C')
+				(data->collect_count)++;
+			x++;
+		}
+		y++;
+	}
+}
+
+void	get_player_pos(t_data *data)
 {
 	int x;
 	int y;
@@ -65,8 +84,16 @@ void	move_player(t_data *data, int keycode)
 	}
 	else if (data->map[data->player_pos.y][data->player_pos.x] == 'E')
 	{
-		printf("GAME OVER!\n");
-		quit_game(data);
+		if (data->collect_count == 0)
+		{
+			printf("GAME OVER!\n");
+			quit_game(data);
+		}
+		else 
+		{
+			data->player_pos.x = old_pos.x;
+			data->player_pos.y = old_pos.y;
+		}
 	}
 	else
 	{
@@ -74,6 +101,9 @@ void	move_player(t_data *data, int keycode)
 		{
 			data->map[data->player_pos.y][data->player_pos.x] = '0';
 			mlx_put_image_to_window(data->mlx, data->mlx_win, data->textures[floor].img, data->player_pos.x * TXT_PX, data->player_pos.y * TXT_PX);
+			(data->collect_count)--;
+			printf("COLLECTED! GJ!\n");
+			printf("COLLECTIBLES LEFT %d\n", data->collect_count);
 		}
 		data->map[old_pos.y][old_pos.x] = '0';
 		data->map[data->player_pos.y][data->player_pos.x] = 'P';
@@ -112,9 +142,11 @@ int	main(int argc, char *argv[])
 		printf("%d %d\n", data.textures[0].size.x, data.textures[0].size.y);
 		draw_map(&data);
 		data.moves = 0;
-		find_player_pos(&data);
-		printf("%d\n", data.moves);
-		printf("PLAYER POS: x-%d y-%d\n", data.player_pos.x, data.player_pos.y);
+		get_player_pos(&data);
+		get_collect_count(&data);
+		// printf("%d\n", data.moves);
+		printf("%d\n", data.collect_count);
+		// printf("PLAYER POS: x-%d y-%d\n", data.player_pos.x, data.player_pos.y);
 		mlx_key_hook(data.mlx_win, key_hook, &data);
 		mlx_loop(data.mlx);
 	}
