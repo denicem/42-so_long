@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:23:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/21 18:24:54 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/22 22:31:38 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 # define SO_LONG_H
 
 # include "../Libft/inc/libft.h"
+
+# define BLACK	"\033[0;30m"
+# define RED	"\033[0;31m"
+# define GREEN	"\033[0;32m"
+# define YELLOW	"\033[0;33m"
+# define BLUE	"\033[0;34m"
+# define PURPLE	"\033[0;35m"
+# define CYAN	"\033[0;36m"
+# define WHITE	"\033[0;37m"
+# define RESET	"\033[0m"
 
 # define TXT_PX 64
 # define NO_OF_TXT 5
@@ -63,6 +73,8 @@ void	draw_map(t_data *data);
 int		key_hook(int keycode, t_data *data);
 void	move_player(t_data *data, int keycode);
 
+void	get_game_info(t_data *data);
+void	show_game_info(t_data *data);
 int		quit_game(t_data *data);
 void	quit_game_err(t_data *data, char *err_msg);
 void	get_collect_count(t_data *data);

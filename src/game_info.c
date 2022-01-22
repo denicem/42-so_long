@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 22:00:00 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/21 18:35:21 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/22 22:30:28 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include "../inc/so_long.h"
+
+void	show_game_info(t_data *data)
+{
+	printf("%sCollectibles:%s\t%d\n", BLUE, RESET, data->collect_count);
+	printf("%sExits:%s\t\t%d\n", BLUE, RESET, data->exit_count);
+}
+
+void	get_game_info(t_data *data)
+{
+	get_collect_count(data);
+	get_exit_count(data);
+	get_player_count(data);
+}
 
 void	get_collect_count(t_data *data)
 {

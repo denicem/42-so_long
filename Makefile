@@ -6,7 +6,7 @@
 #    By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 11:23:59 by dmontema          #+#    #+#              #
-#    Updated: 2022/01/20 22:01:35 by dmontema         ###   ########.fr        #
+#    Updated: 2022/01/22 21:48:45 by dmontema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC_DIR	:=	./src
 SRCS	:=	$(SRC_DIR)/main.c \
 			$(SRC_DIR)/parse_map.c \
 			$(SRC_DIR)/draw_map.c \
+			$(SRC_DIR)/check_map.c \
 			$(SRC_DIR)/game.c \
 			$(SRC_DIR)/game_info.c \
 			$(SRC_DIR)/game_exit.c
