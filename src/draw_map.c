@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:23:43 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/24 21:24:52 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:11:30 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,14 @@ void	draw_map(t_data *data)
 
 void	draw_img(t_data *data, int x, int y, int txt)
 {
-	void *mlx;
-	void *mlx_win;
-	void *img;
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
 
 	mlx = data->mlx;
 	mlx_win = data->mlx_win;
 	img = data->textures[txt].img;
 	x = x * TXT_PX;
 	y = y * TXT_PX;
-	 
 	mlx_put_image_to_window(mlx, mlx_win, img, x, y);
 }

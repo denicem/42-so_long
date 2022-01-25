@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 22:00:50 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/24 20:30:39 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:35:20 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static void	free_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -31,13 +31,14 @@ static void	free_map(char **map)
 int	quit_game(t_data *data)
 {
 	int	i;
+
 	i = 0;
 	free_map(data->map);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	i = 0;
 	while (i < NO_OF_TXT)
 		mlx_destroy_image(data->mlx, data->textures[i++].img);
-	exit(EXIT_SUCCESS);
+	system("leaks so_long");
 	return (0);
 }
 

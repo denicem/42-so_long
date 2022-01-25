@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:56:13 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/24 18:47:34 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:35:13 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	count_lines(int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
+		free(line);
 		lines++;
 		line = get_next_line(fd);
 	}
@@ -33,9 +34,9 @@ static int	count_lines(int fd)
 
 void	init_map(t_data *data)
 {
-	int		lines;
-	int		fd;
-	int		i;
+	int	lines;
+	int	fd;
+	int	i;
 
 	fd = open(data->path_map, O_RDONLY);
 	if (fd < 0)

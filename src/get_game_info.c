@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:51:57 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/24 21:28:39 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/25 18:10:22 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 void	*get_mlx_window(t_data *data)
 {
-	int width;
-	int height;
+	int	width;
+	int	height;
 
 	width = data->width * TXT_PX;
 	height = data->height * TXT_PX;
