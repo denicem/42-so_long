@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 22:00:50 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/25 18:35:20 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/25 23:49:26 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	quit_game(t_data *data)
 	i = 0;
 	while (i < NO_OF_TXT)
 		mlx_destroy_image(data->mlx, data->textures[i++].img);
-	system("leaks so_long");
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
