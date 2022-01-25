@@ -6,12 +6,11 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 22:00:50 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/22 23:02:40 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/24 20:30:39 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdio.h>
 #include <fcntl.h>
 #include "../inc/so_long.h"
 

@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:56:13 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/22 21:49:08 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/24 18:47:34 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,55 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-static int	count_lines(char *path_map)
+static int	count_lines(int fd)
 {
 	int		lines;
-	int		fd;
 	char	*line;
 
 	lines = 0;
-	fd = open(path_map, O_RDONLY);
 	line = get_next_line(fd);
 	while (line)
 	{
-		free(line);
 		lines++;
 		line = get_next_line(fd);
 	}
 	free(line);
-	close(fd);
 	return (lines);
 }
 
 void	init_map(t_data *data)
 {
 	int		lines;
-	int		i;
 	int		fd;
+	int		i;
 
-	lines = count_lines(data->path_map);
+	fd = open(data->path_map, O_RDONLY);
+	if (fd < 0)
+	{
+		printf("%sError%s: Map not found!\n", RED, RESET);
+		exit(EXIT_FAILURE);
+	}
+	lines = count_lines(fd);
+	close(fd);
 	data->map = malloc(sizeof(char *) * (lines + 1));
 	if (data->map == NULL)
-		exit(1);
+		exit(EXIT_FAILURE);
 	fd = open(data->path_map, O_RDONLY);
 	i = 0;
 	while (i < lines)
 		data->map[i++] = get_next_line(fd);
-	data->map[i] = 0;
 	close(fd);
-	data->width = ft_strlen(data->map[0]) - 1; //minus newl
+	data->map[i] = 0;
+	data->width = ft_strlen(data->map[0]) - 1;
 	data->height = lines;
 }
 
-void	print_map(t_data *data)
+void	print_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	while (data->map[i])
-		ft_printf("%s", data->map[i++]);
-	ft_printf("\n");
+	while (map[i])
+		printf("%s", map[i++]);
+	printf("\n");
 }

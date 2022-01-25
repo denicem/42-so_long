@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_info.c                                        :+:      :+:    :+:   */
+/*   so_long_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 22:00:00 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/24 19:11:04 by dmontema         ###   ########.fr       */
+/*   Created: 2022/01/24 18:04:05 by dmontema          #+#    #+#             */
+/*   Updated: 2022/01/24 20:27:31 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include <fcntl.h>
 #include "../inc/so_long.h"
 
-void	show_game_info(t_data *data)
+size_t	ft_strlen_wo_c(const char *s, char c)
 {
-	printf("%s<<< SO LONG >>>%s\n", CYAN, RESET);
-	printf("%sCollectibles:%s\t%d\n", CYAN, RESET, data->collect_count);
-	printf("%sExits:%s\t\t%d\n", CYAN, RESET, data->exit_count);
-	printf("%sMap Layout:%s\n", CYAN, RESET);
-	print_map(data->map);
-}
+	int	i;
+	int	res;
 
-void	init_vals(t_data *data)
-{
-	get_player_count(data);
-	get_collect_count(data);
-	get_exit_count(data);
+	i = 0;
+	res = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] != c)
+			res++;
+		i++;
+	}
+	return (res);
 }

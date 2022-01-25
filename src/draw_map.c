@@ -6,12 +6,11 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:23:43 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/20 22:11:08 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:24:52 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdio.h>
 #include <fcntl.h>
 #include "../inc/so_long.h"
 
@@ -45,27 +44,32 @@ void	draw_map(t_data *data)
 		x = 0;
 		while (data->map[y][x])
 		{
-			mlx_put_image_to_window
-				(data->mlx, data->mlx_win,
-				data->textures[floor].img, x * TXT_PX, y * TXT_PX);
+			draw_img(data, x, y, floor);
 			if (data->map[y][x] == '1')
-				mlx_put_image_to_window
-					(data->mlx, data->mlx_win,
-					data->textures[wall].img, x * TXT_PX, y * TXT_PX);
+				draw_img(data, x, y, wall);
 			else if (data->map[y][x] == 'C')
-				mlx_put_image_to_window
-					(data->mlx, data->mlx_win,
-					data->textures[collect].img, x * TXT_PX, y * TXT_PX);
+				draw_img(data, x, y, collect);
 			else if (data->map[y][x] == 'E')
-				mlx_put_image_to_window
-					(data->mlx, data->mlx_win,
-					data->textures[finish].img, x * TXT_PX, y * TXT_PX);
+				draw_img(data, x, y, finish);
 			else if (data->map[y][x] == 'P')
-				mlx_put_image_to_window
-					(data->mlx, data->mlx_win,
-					data->textures[player].img, x * TXT_PX, y * TXT_PX);
+				draw_img(data, x, y, player);
 			x++;
 		}
 		y++;
 	}
+}
+
+void	draw_img(t_data *data, int x, int y, int txt)
+{
+	void *mlx;
+	void *mlx_win;
+	void *img;
+
+	mlx = data->mlx;
+	mlx_win = data->mlx_win;
+	img = data->textures[txt].img;
+	x = x * TXT_PX;
+	y = y * TXT_PX;
+	 
+	mlx_put_image_to_window(mlx, mlx_win, img, x, y);
 }

@@ -6,39 +6,15 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 21:46:15 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/22 23:04:16 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/24 19:18:28 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
-#include <stdio.h>
 #include <fcntl.h>
 #include "../inc/so_long.h"
 
-size_t	ft_strlen_wo_c(const char *s, char c)
-{
-	int	i;
-	int	res;
-
-	i = 0;
-	res = 0;
-	while (s[i] != '\0')
-	{
-		if (s[i] != c)
-			res++;
-		i++;
-	}
-	return (res);
-}
-
-int	is_map_char(char c)
-{
-	if (c == '0' || c == '1' || c == 'P' || c == 'C' || c == 'E')
-		return (1);
-	return (0);
-}
-
-int	is_wall_surr(char **map, int width, int height)
+static int	is_wall_surr(char **map, int width, int height)
 {
 	int	i;
 
@@ -59,7 +35,7 @@ int	is_wall_surr(char **map, int width, int height)
 	return (1);
 }
 
-int	is_rect(char **map, int width)
+static int	is_rect(char **map, int width)
 {
 	int	i;
 
@@ -72,7 +48,14 @@ int	is_rect(char **map, int width)
 	return (1);
 }
 
-int	is_only_map_chars(char **map, int width, int height)
+static int	is_map_char(char c)
+{
+	if (c == '0' || c == '1' || c == 'P' || c == 'C' || c == 'E')
+		return (1);
+	return (0);
+}
+
+static int	is_only_map_chars(char **map, int width, int height)
 {
 	int	x;
 	int	y;
@@ -92,17 +75,23 @@ int	is_only_map_chars(char **map, int width, int height)
 	return (1);
 }
 
+/*
+	check if the map is valid
+	if the validation is ok, then it will initialize the values 
+	then checks again if the values are valid
+*/
 void	check_map(t_data *data)
 {
 	if (!is_only_map_chars(data->map, data->width, data->height))
-		quit_game_err(data, "Map should only contain these characters: '0', '1', 'P', 'C' and 'E'");
+		quit_game_err(data, "Only valid characters: '0', '1', 'P', 'C', 'E'");
 	if (!is_rect(data->map, data->width))
 		quit_game_err(data, "Map is not rectangular!");
 	if (!is_wall_surr(data->map, data->width, data->height))
 		quit_game_err(data, "Map is not surrounded by walls!");
-	get_game_info(data);
-	if (data->collect_count < 1 || data->exit_count < 1 || data->player_count < 1)
-		quit_game_err(data, "Map should have at least one collectible and one exit!");
+	init_vals(data);
+	if (data->collect_count < 1 || data->exit_count < 1)
+		quit_game_err(data, "Map with at least one collectible and one exit!");
 	if (data->player_count != 1)
 		quit_game_err(data, "Only one player allowed!");
+	get_player_pos(data);
 }
