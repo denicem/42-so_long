@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:23:43 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/25 18:11:30 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/26 03:01:45 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 void	set_textures(t_data *data)
 {
 	data->textures[floor].img = mlx_xpm_file_to_image
-		(data->mlx, "./textures/floor.xpm",
+		(data->mlx, "./textures/desert-floor.xpm",
 			&data->textures->size.x, &data->textures->size.y);
 	data->textures[wall].img = mlx_xpm_file_to_image
 		(data->mlx, "./textures/wall.xpm",
 			&data->textures->size.x, &data->textures->size.y);
 	data->textures[collect].img = mlx_xpm_file_to_image
-		(data->mlx, "./textures/collect.xpm",
+		(data->mlx, "./textures/rupy.xpm",
 			&data->textures->size.x, &data->textures->size.y);
 	data->textures[finish].img = mlx_xpm_file_to_image
 		(data->mlx, "./textures/exit.xpm",
 			&data->textures->size.x, &data->textures->size.y);
 	data->textures[player].img = mlx_xpm_file_to_image
-		(data->mlx, "./textures/player.xpm",
+		(data->mlx, "./textures/link.xpm",
 			&data->textures->size.x, &data->textures->size.y);
 }
 
