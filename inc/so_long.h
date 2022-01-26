@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:23:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/26 16:51:46 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/26 21:25:39 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		key_hook(int keycode, t_data *data);
 void	move(t_data *data, int x, int y, int dir);
 void	move_player(t_data *data, t_vector old_pos, int dir);
 void	move_to_exit(t_data *data);
+int		def_dir(int ud, int lr);
 void	print_moves(t_data *data);
 
 int		quit_game(t_data *data);
