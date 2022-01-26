@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:23:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/25 18:02:05 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/26 16:51:46 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define RESET	"\033[0m"
 
 # define TXT_PX 64
-# define NO_OF_TXT 5
+# define NO_OF_TXT 8
 
 # define ESC 53
 # define W 13
@@ -35,7 +35,10 @@ enum e_textures {
 	wall,
 	collect,
 	finish,
-	player
+	player_down,
+	player_left,
+	player_right,
+	player_up
 };
 
 typedef struct s_vector
@@ -84,8 +87,8 @@ void	get_player_count(t_data *data);
 void	get_player_pos(t_data *data);
 
 int		key_hook(int keycode, t_data *data);
-void	move(t_data *data, int x, int y);
-void	move_player(t_data *data, t_vector old_pos);
+void	move(t_data *data, int x, int y, int dir);
+void	move_player(t_data *data, t_vector old_pos, int dir);
 void	move_to_exit(t_data *data);
 void	print_moves(t_data *data);
 

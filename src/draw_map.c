@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 01:23:43 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/26 03:01:45 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:07:22 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,22 @@ void	set_textures(t_data *data)
 		(data->mlx, "./textures/wall.xpm",
 			&data->textures->size.x, &data->textures->size.y);
 	data->textures[collect].img = mlx_xpm_file_to_image
-		(data->mlx, "./textures/rupy.xpm",
+		(data->mlx, "./textures/rupy-2.xpm",
 			&data->textures->size.x, &data->textures->size.y);
 	data->textures[finish].img = mlx_xpm_file_to_image
 		(data->mlx, "./textures/exit.xpm",
 			&data->textures->size.x, &data->textures->size.y);
-	data->textures[player].img = mlx_xpm_file_to_image
+	data->textures[player_down].img = mlx_xpm_file_to_image
 		(data->mlx, "./textures/link.xpm",
+			&data->textures->size.x, &data->textures->size.y);
+	data->textures[player_left].img = mlx_xpm_file_to_image
+		(data->mlx, "./textures/link-left.xpm",
+			&data->textures->size.x, &data->textures->size.y);
+	data->textures[player_right].img = mlx_xpm_file_to_image
+		(data->mlx, "./textures/link-right.xpm",
+			&data->textures->size.x, &data->textures->size.y);
+	data->textures[player_up].img = mlx_xpm_file_to_image
+		(data->mlx, "./textures/link-back.xpm",
 			&data->textures->size.x, &data->textures->size.y);
 }
 
@@ -52,7 +61,7 @@ void	draw_map(t_data *data)
 			else if (data->map[y][x] == 'E')
 				draw_img(data, x, y, finish);
 			else if (data->map[y][x] == 'P')
-				draw_img(data, x, y, player);
+				draw_img(data, x, y, player_down);
 			x++;
 		}
 		y++;

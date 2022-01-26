@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 21:54:03 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/25 18:13:31 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/26 17:09:56 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,47 @@ int	key_hook(int keycode, t_data *data)
 {
 	int	ud;
 	int	lr;
+	int	dir;
 
 	if (keycode == ESC)
 		quit_game(data);
 	ud = 0;
 	lr = 0;
-	if (keycode == A || keycode == D)
+	dir = 0;
+	if (keycode == W || keycode == A || keycode == S || keycode == D)
 	{
-		if (keycode == A)
-			lr--;
-		else if (keycode == D)
-			lr++;
+		if (keycode == A || keycode == D)
+		{
+			if (keycode == A)
+			{
+				lr--;
+				dir = player_left;
+			}
+			else if (keycode == D)
+			{
+				lr++;
+				dir = player_right;
+			}
+		}
+		else if (keycode == W || keycode == S)
+		{
+			if (keycode == W)
+			{
+				ud--;
+				dir = player_up;
+			}
+			else if (keycode == S)
+			{
+				ud++;
+				dir = player_down;
+			}
+		}
+		move(data, lr, ud, dir);
 	}
-	else if (keycode == W || keycode == S)
-	{
-		if (keycode == W)
-			ud--;
-		else if (keycode == S)
-			ud++;
-	}
-	move(data, lr, ud);
 	return (1);
 }
 
-void	move(t_data *data, int x, int y)
+void	move(t_data *data, int x, int y, int dir)
 {
 	t_vector	old_pos;
 
@@ -62,13 +79,13 @@ void	move(t_data *data, int x, int y)
 		{
 			data->player_pos.x += x;
 			data->player_pos.y += y;
-			move_player(data, old_pos);
+			move_player(data, old_pos, dir);
 		}
 	}
 	print_moves(data);
 }
 
-void	move_player(t_data *data, t_vector old_pos)
+void	move_player(t_data *data, t_vector old_pos, int dir)
 {
 	if (data->map[data->player_pos.y][data->player_pos.x] == 'C')
 	{
@@ -80,7 +97,7 @@ void	move_player(t_data *data, t_vector old_pos)
 	data->map[old_pos.y][old_pos.x] = '0';
 	data->map[data->player_pos.y][data->player_pos.x] = 'P';
 	draw_img(data, old_pos.x, old_pos.y, floor);
-	draw_img(data, data->player_pos.x, data->player_pos.y, player);
+	draw_img(data, data->player_pos.x, data->player_pos.y, dir);
 }
 
 void	move_to_exit(t_data *data)
