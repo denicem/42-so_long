@@ -6,16 +6,16 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 20:17:59 by dmontema          #+#    #+#             */
-/*   Updated: 2021/12/17 19:25:27 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:33:22 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/libft.h"
 
-# include	<stdlib.h>
-# include	<unistd.h>
+#include	<stdlib.h>
+#include	<unistd.h>
 
-# define BUFFER_SIZE 42
+#define BUFFER_SIZE 42
 
 char	*ft_strjoin_gnl(char *s1, char *s2, int len_s2)
 {

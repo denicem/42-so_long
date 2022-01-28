@@ -6,14 +6,14 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 00:44:17 by dmontema          #+#    #+#             */
-/*   Updated: 2021/12/17 18:47:49 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:33:29 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include	"../../../inc/libft.h"
+#include	"../../../inc/libft.h"
 
-# include	<unistd.h>
-# include	<limits.h>
+#include	<unistd.h>
+#include	<limits.h>
 
 int	ft_putchar_pf(char c)
 {
@@ -61,7 +61,7 @@ int	ft_putnbr_pf(int nbr, int flag)
 	return (res);
 }
 
-int	ft_putnbr_base_pf(unsigned long nbr, char *set, unsigned int base, int f)
+int	ft_putnbr_base_pf(unsigned long nbr, char *set, int base, int f)
 {
 	int	res;
 
@@ -75,7 +75,7 @@ int	ft_putnbr_base_pf(unsigned long nbr, char *set, unsigned int base, int f)
 	}
 	else
 		res = 0;
-	if (nbr >= base)
+	if (nbr >= (unsigned int) base)
 		res += ft_putnbr_base_pf(nbr / base, set, base, f);
 	res += write(1, set + (nbr % base), 1);
 	return (res);

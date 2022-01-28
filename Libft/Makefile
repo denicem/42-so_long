@@ -6,7 +6,7 @@
 #    By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/25 16:06:18 by dmontema          #+#    #+#              #
-#    Updated: 2021/12/17 19:25:54 by dmontema         ###   ########.fr        #
+#    Updated: 2022/01/28 17:26:39 by dmontema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,15 +91,15 @@ AR			=	ar rc
 all:	$(NAME)
 
 $(NAME): $(LIBFT_OBJS)
-	$(AR) $(NAME) $(LIBFT_OBJS)
+	@$(AR) $(NAME) $(LIBFT_OBJS)
 
 .c.o:	obj-dir
-	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 clean:
-	rm -f $(LIBFT_OBJS)
+	@rm -f $(LIBFT_OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

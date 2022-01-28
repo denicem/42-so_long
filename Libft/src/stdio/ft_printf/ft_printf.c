@@ -6,14 +6,14 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 17:07:33 by dmontema          #+#    #+#             */
-/*   Updated: 2021/12/17 18:47:04 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:33:35 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include	"../../../inc/libft.h"
+#include	"../../../inc/libft.h"
 
-# include	<stdlib.h>
-# include	<stdarg.h>
+#include	<stdlib.h>
+#include	<stdarg.h>
 
 static char	*get_flags(char **format)
 {

@@ -6,14 +6,14 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 20:02:31 by dmontema          #+#    #+#             */
-/*   Updated: 2021/12/17 18:06:11 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:32:10 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRING_H
 # define	STRING_H
 
-#include <string.h>
+# include <string.h>
 
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
