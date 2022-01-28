@@ -6,7 +6,7 @@
 #    By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 11:23:59 by dmontema          #+#    #+#              #
-#    Updated: 2022/01/24 23:13:21 by dmontema         ###   ########.fr        #
+#    Updated: 2022/01/28 17:05:43 by dmontema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,5 +62,6 @@ clean:
 
 fclean:	clean
 	rm -f $(NAME)
+	make -C Libft fclean
 
 re:	fclean all
