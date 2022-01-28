@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 11:23:53 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/26 21:25:39 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:48:49 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # define GREEN	"\033[0;32m"
 # define RESET	"\033[0m"
 
-# define TXT_PX 64
-# define NO_OF_TXT 8
+# define PX 64
+# define IMGS 8
 
 # define ESC 53
 # define W 13
@@ -66,7 +66,7 @@ typedef struct s_data
 	int			player_count;
 	t_vector	player_pos;
 	int			moves;
-	t_image		textures[NO_OF_TXT];
+	t_image		textures[IMGS];
 }		t_data;
 
 void	init_map(t_data *data);

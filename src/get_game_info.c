@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 17:51:57 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/25 18:10:22 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:46:44 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	*get_mlx_window(t_data *data)
 	int	width;
 	int	height;
 
-	width = data->width * TXT_PX;
-	height = data->height * TXT_PX;
+	width = data->width * PX;
+	height = data->height * PX;
 	return (mlx_new_window(data->mlx, width, height, "so_long"));
 }
 

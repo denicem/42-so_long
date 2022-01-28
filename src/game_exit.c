@@ -6,7 +6,7 @@
 /*   By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 22:00:50 by dmontema          #+#    #+#             */
-/*   Updated: 2022/01/25 23:49:26 by dmontema         ###   ########.fr       */
+/*   Updated: 2022/01/28 18:48:49 by dmontema         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	quit_game(t_data *data)
 	free_map(data->map);
 	mlx_destroy_window(data->mlx, data->mlx_win);
 	i = 0;
-	while (i < NO_OF_TXT)
+	while (i < IMGS)
 		mlx_destroy_image(data->mlx, data->textures[i++].img);
 	exit(EXIT_SUCCESS);
 	return (0);
