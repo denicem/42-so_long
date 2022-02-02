@@ -6,7 +6,7 @@
 #    By: dmontema <dmontema@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 11:23:59 by dmontema          #+#    #+#              #
-#    Updated: 2022/01/28 18:01:24 by dmontema         ###   ########.fr        #
+#    Updated: 2022/02/02 11:56:33 by dmontema         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS	:=	$(SRC_DIR)/main.c \
 			$(SRC_DIR)/get_game_info.c \
 			$(SRC_DIR)/game_exit.c
 
+OBJS_DIR	:=	./obj
 OBJS	:=	$(SRCS:.c=.o)
 
 MLX_LIB	:=	mlx/libmlx.a
@@ -45,6 +46,8 @@ all:	$(NAME)
 $(NAME):	$(MLX_LIB) $(LIBS) $(OBJS) 
 	@echo "$(CYAN)Compiling so_long...$(RESET)"
 	@$(CC) $(CFLAGS) $(LINK_MLX) $(LIBS) $(OBJS) -o $(NAME)
+	@mkdir -p $(OBJS_DIR)
+	@mv $(OBJS) $(OBJS_DIR)
 	@echo " $(GREEN)\tCOMPLETE!$(RESET)"
 
 $(MLX_LIB):	
@@ -59,10 +62,11 @@ $(LIBS):
 	@make -C Libft
 
 clean:
-	@echo "$(GREEN)Cleaning done.$(RESET)"
-	@rm -f $(OBJS)
+	@rm -f $(OBJS_DIR)/*
+	@rmdir $(OBJS_DIR)
 	@make -C mlx clean
 	@make -C Libft clean
+	@echo "$(GREEN)Cleaning done.$(RESET)"
 
 fclean:	clean
 	@rm -f $(NAME)
